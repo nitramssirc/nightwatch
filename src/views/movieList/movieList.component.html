@@ -1,0 +1,4 @@
+<div class="list-group">
+    <a *ngFor="let movie of movieList" class="list-group-item list-group-item-action" 
+        [routerLink]="['/movies', movie]">{{movie}}</a>
+</div>
