@@ -4,15 +4,19 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class VideoFileService{
-    
-    constructor(private http:HttpClient){}
+    rootUrl:string;
+
+    constructor(private http:HttpClient){
+        this.rootUrl = window.location.href.split("/").slice(0,3).join("/") + ":3000";
+        
+    }
     
     getRandomVideo():Observable<Video>{
-        return this.http.get<Video>("http://raspberrypi.:3000/random");
+        return this.http.get<Video>(this.rootUrl + "/random");
     }
 
     getMovieList():Observable<MovieList>{
-        return this.http.get<MovieList>("http://raspberrypi.:3000/movies");
+        return this.http.get<MovieList>(this.rootUrl + "/movies");
     }
 }
 
