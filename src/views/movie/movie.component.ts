@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { VideoInfo, VideoType } from 'src/models/videoModels';
 
 @Component({
-  templateUrl: './movie.component.html',
+  template: `
+  <div>
+    <app-video-player [videoInfo]="movieInfo"></app-video-player>
+  </div>
+  `,
 })
-export class MovieComponent{
-  movieTitle:string;
-  movieSrc:string
-  constructor(private route:ActivatedRoute){
-    this.movieTitle = this.route.snapshot.params['movie'];
-    this.movieSrc = "assets/videos/Landry Movies" + this.movieTitle; 
+export class MovieComponent {
+  movieInfo: VideoInfo;
+  constructor(private route: ActivatedRoute) {
+    this.movieInfo = new VideoInfo(this.route.snapshot.params['movie'], VideoType.Movie);
   }
 }
 

@@ -1,23 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { VideoFileService, Video } from 'src/videoFileService/videoFileService';
+import { VideoInfo, VideoType } from 'src/models/videoModels';
 
 @Component({
-  templateUrl: './playRandomShow.component.html',
+  template: `
+  <div>
+    <app-video-player [videoInfo]="randomVideoInfo" [showNext]="true" 
+    (nextClick)="handleNextClick()"></app-video-player>  
+  </div>
+  `
 })
 export class PlayRandomShowComponent implements OnInit {
-  randomVideoTitle:string;
-  randomVideoSrc:string;
-  constructor(private videoFileService:VideoFileService){
-    
+  randomVideoInfo: VideoInfo;
+  constructor(private videoFileService: VideoFileService) {
+
   }
 
-  ngOnInit(){
-    this.videoFileService.getRandomVideo().subscribe((vid:Video)=>{
-      this.randomVideoTitle = vid.vidoefile;
-      this.randomVideoSrc = "assets/videos/TV" + vid.vidoefile;
-    });
+  ngOnInit() {
+    this.loadRandomShow();
   }
 
   title = 'Play Random Show';
+
+  handleNextClick(){
+    this.loadRandomShow();
+  };
+
+  loadRandomShow(){
+    this.videoFileService.getRandomVideo().subscribe((vid: Video) => {
+      this.randomVideoInfo = new VideoInfo(vid.vidoefile, VideoType.TV);
+    });
+  }
 }
 

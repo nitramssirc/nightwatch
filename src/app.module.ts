@@ -10,13 +10,15 @@ import { VideoFileService } from 'src/videoFileService/videoFileService';
 import { PlayRandomShowComponent } from './views/playRandomShow/playRandomShow.component';
 import { MovieListComponent } from './views/movieList/movieList.component';
 import { MovieComponent } from './views/movie/movie.component';
+import { VideoPlayerComponent } from './app/video-player/video-player.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayRandomShowComponent,
     MovieListComponent,
-    MovieComponent
+    MovieComponent,
+    VideoPlayerComponent
   ],
   imports: [
     BrowserModule,
