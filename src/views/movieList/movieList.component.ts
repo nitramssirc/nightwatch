@@ -16,7 +16,6 @@ export class MovieListComponent implements OnInit {
       for(var i=0; i<movies.movies.length; i++){
         this.movieList.push(new movieListIten(movies.movies[i]))
       }
-      console.log(this.movieList);
     });
   }
 

@@ -21,7 +21,9 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/apple-touch-icon.png"
+              "src/apple-touch-icon.png",
+              "src/apple-launch-1242x2688.png",
+              "src/apple-launch-2688x1242.png"
             ],
             "styles": [
               "src/styles.css",
