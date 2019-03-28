@@ -1,11 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { VideoFileService, Video, MovieList } from 'src/videoFileService/videoFileService';
+import { VideoFileService, MovieList } from 'src/videoFileService/videoFileService';
+import { VideoListItem } from 'src/models/videoModels';
 
 @Component({
-  templateUrl: './movieList.component.html',
+  template: `
+  <div>
+    <app-video-list [videoList]="movieList" [routerPath]=rp [showPlayRandom]=playRandom></app-video-list>
+  </div>
+  `,
 })
 export class MovieListComponent implements OnInit {
-  movieList:movieListIten[];
+  movieList:VideoListItem[];
+  rp = "/movies";
+  playRandom = true;
+
   constructor(private videoFileService:VideoFileService){
     
   }
@@ -14,20 +22,11 @@ export class MovieListComponent implements OnInit {
     this.videoFileService.getMovieList().subscribe((movies:MovieList)=>{
       this.movieList = [];
       for(var i=0; i<movies.movies.length; i++){
-        this.movieList.push(new movieListIten(movies.movies[i]))
+        var filename = movies.movies[i];
+        this.movieList.push(new VideoListItem(filename.slice(1, filename.length-4), filename))
       }
     });
   }
 
   title = 'Movies';
-}
-
-export class movieListIten{
-  displayName:string;
-  filename:string;
-
-  constructor(movie:string){
-    this.filename = movie;
-    this.displayName = movie.slice(1, movie.length-4)
-  }
 }

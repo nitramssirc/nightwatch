@@ -11,6 +11,7 @@ import { PlayRandomShowComponent } from './views/playRandomShow/playRandomShow.c
 import { MovieListComponent } from './views/movieList/movieList.component';
 import { MovieComponent } from './views/movie/movie.component';
 import { VideoPlayerComponent } from './app/video-player/video-player.component';
+import { VideoListComponent } from './app/video-list/video-list.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { VideoPlayerComponent } from './app/video-player/video-player.component'
     PlayRandomShowComponent,
     MovieListComponent,
     MovieComponent,
-    VideoPlayerComponent
+    VideoPlayerComponent,
+    VideoListComponent
   ],
   imports: [
     BrowserModule,

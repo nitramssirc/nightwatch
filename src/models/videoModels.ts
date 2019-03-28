@@ -34,3 +34,13 @@ export class VideoInfo {
 
     }
 }
+
+export class VideoListItem {
+    displayName: string;
+    filename: string;
+
+    constructor(dn: string, f:string) {
+        this.filename = f;
+        this.displayName = dn;
+    }
+}

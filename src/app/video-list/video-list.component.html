@@ -1,0 +1,6 @@
+<div class="list-group">
+  <a *ngIf="showPlayRandom" class="list-group-item list-group-item-action"  
+    (click)="handlePlayRandomClick()" >PLAY RANDOM</a>
+  <a *ngFor="let video of videoList" class="list-group-item list-group-item-action" 
+      [routerLink]="[routerPath, video.filename]">{{video.displayName}}</a>
+</div>
