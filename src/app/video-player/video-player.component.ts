@@ -10,7 +10,9 @@ export class VideoPlayerComponent implements OnInit {
 
   @Input() videoInfo:VideoInfo
   @Input() showNext:boolean
+  @Input() showBack:boolean
   @Output() nextClick = new EventEmitter();
+  @Output() backClick = new EventEmitter();
 
   constructor() { }
 
@@ -19,5 +21,9 @@ export class VideoPlayerComponent implements OnInit {
 
   handleNextClick(){
     this.nextClick.emit();
+  }
+
+  handleBackClick(){
+    this.backClick.emit();
   }
 }
