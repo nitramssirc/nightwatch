@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { VideoFileService, Video } from 'src/videoFileService/videoFileService';
+import { VideoFileService, Video } from 'src/services/videoFileService/videoFileService';
 import { VideoInfo, VideoType } from 'src/models/videoModels';
 
 @Component({
   template: `
   <div>
-    <app-video-player [videoInfo]="randomVideoInfo" [showNext]="true" 
-    (nextClick)="handleNextClick()"></app-video-player>  
+    <app-video-player [videoInfo]="randomVideoInfo" [showNext]="true"
+    (nextClick)="handleNextClick()"></app-video-player>
   </div>
   `
 })
@@ -16,11 +16,11 @@ export class PlayRandomShowComponent implements OnInit {
 
   }
 
+  title = 'Play Random Show';
+
   ngOnInit() {
     this.loadRandomShow();
   }
-
-  title = 'Play Random Show';
 
   handleNextClick(){
     this.loadRandomShow();
