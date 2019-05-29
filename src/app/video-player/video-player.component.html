@@ -1,15 +1,15 @@
 <h3>{{videoInfo?.title}}</h3>
 <div style="text-align: center;  height: 240px;">
-  <button 
+  <button
     *ngIf="showBack"
-    class="btn btn-primary btn-lg" 
+    class="btn btn-primary btn-lg"
     style="height: 240px; width: 100px; position:absolute; left:0;"
     (click)="handleBackClick()">Back</button>
-  <video width="320" height="240" src="{{videoInfo?.src}}" controls>
+  <video width="320" height="240" src="{{videoInfo?.src}}" controls autoplay (play)="sendElementFullscreen($event)">
   </video>
-  <button 
+  <button
     *ngIf="showNext"
-    class="btn btn-primary btn-lg" 
+    class="btn btn-primary btn-lg"
     style="height: 240px; width: 100px; position:absolute; right:0;"
     (click)="handleNextClick()">Next</button>
 </div>

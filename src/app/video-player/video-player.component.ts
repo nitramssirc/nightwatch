@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { VideoInfo } from 'src/models/videoModels';
+import screenfullTest = require('screenfull');
 
 @Component({
   selector: 'app-video-player',
@@ -19,11 +20,17 @@ export class VideoPlayerComponent implements OnInit {
   ngOnInit() {
   }
 
-  handleNextClick(){
+  handleNextClick() {
     this.nextClick.emit();
   }
 
-  handleBackClick(){
+  handleBackClick() {
     this.backClick.emit();
+  }
+
+  sendElementFullscreen(event: any) {
+    if (enabled) {
+      screenfull.request(event.target);
+    }
   }
 }
