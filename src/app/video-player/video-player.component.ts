@@ -1,4 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  HostListener,
+  ViewChild,
+  ElementRef
+} from "@angular/core";
 import { VideoInfo } from "src/models/videoModels";
 import * as screenfull from "screenfull";
 import { Screenfull } from "screenfull";
@@ -14,6 +23,7 @@ export class VideoPlayerComponent implements OnInit {
   @Input() showBack: boolean;
   @Output() nextClick = new EventEmitter();
   @Output() backClick = new EventEmitter();
+  @ViewChild("videoPlayer", { static: false }) vidPlayer: ElementRef;
 
   constructor() {}
 
@@ -39,5 +49,26 @@ export class VideoPlayerComponent implements OnInit {
     if (sf.enabled) {
       sf.exit();
     }
+  }
+
+  @HostListener("window:keyup", ["$event"])
+  keyEvent(event: KeyboardEvent) {
+    console.log(event);
+    if (!this.vidPlayer) {
+      return;
+    }
+    if (!this.isPlayButtonKeyPress(event)) {
+      return;
+    }
+    // ignore the play click if the video has already been played
+    if (this.vidPlayer.nativeElement.played.length > 0) {
+      return;
+    }
+
+    this.vidPlayer.nativeElement.play();
+  }
+
+  isPlayButtonKeyPress(event: KeyboardEvent) {
+    return event && event.code === "MediaPlayPause";
   }
 }
