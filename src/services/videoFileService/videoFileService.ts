@@ -27,5 +27,10 @@ export class Video{
 }
 
 export class MovieList{
-    movies: string[];
+    movies: Movie[];
+}
+
+export class Movie{
+  displayName: string;
+  filename:string;
 }

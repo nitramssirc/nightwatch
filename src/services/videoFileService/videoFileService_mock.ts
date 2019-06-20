@@ -6,9 +6,26 @@ export class videoFileService_mock implements InMemoryDbService {
   {
     id: 0,
     movies: [
-      '/Movie 1.mp4',
-      '/Movie 2.mp4',
-      '/Movie 3.mp4'
+      {
+        "displayName": "Aladdin",
+        "filename": "/Aladdin.mp4"
+        },
+        {
+        "displayName": "Ant Man And The Wasp",
+        "filename": "/Ant Man And The Wasp.mp4"
+        },
+        {
+        "displayName": "Aquaman",
+        "filename": "/Aquaman.mp4"
+        },
+        {
+        "displayName": "Avengers - Infinity War",
+        "filename": "/Avengers - Infinity War.mp4"
+        },
+        {
+        "displayName": "BlacKkKlansman",
+        "filename": "/BlacKkKlansman.mp4"
+        },
     ]
   };
 
