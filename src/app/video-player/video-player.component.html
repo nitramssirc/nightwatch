@@ -1,4 +1,4 @@
-<h3>{{ videoInfo?.title }}</h3>
+<h3>{{ videoInfo? videoInfo.title : "Adjusting the Antenta" }}</h3>
 <div style="text-align: center;  height: 240px;">
   <button
     *ngIf="showBack"
@@ -8,15 +8,23 @@
   >
     Back
   </button>
+  <img *ngIf="!videoInfo" src="assets/Images/static.gif" />
   <video
+    *ngIf="videoInfo"
     #videoPlayer
     width="320"
     height="240"
-    src="{{ videoInfo?.src }}"
+    [src]="videoInfo?.src"
     controls
     (play)="sendElementFullscreen($event)"
     (ended)="removeElementFromFullscreen($event)"
   ></video>
+  <a *ngIf="videoInfo" [href]="getVlcLink()">
+    <img
+      src="assets/Images/vlc.png"
+      style="vertical-align: top; width: 64px;"
+    />
+  </a>
   <button
     *ngIf="showNext"
     class="btn btn-primary btn-lg"

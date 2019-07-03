@@ -11,6 +11,7 @@ import {
 import { VideoInfo } from "src/models/videoModels";
 import * as screenfull from "screenfull";
 import { Screenfull } from "screenfull";
+import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 
 @Component({
   selector: "app-video-player",
@@ -24,16 +25,19 @@ export class VideoPlayerComponent implements OnInit {
   @Output() nextClick = new EventEmitter();
   @Output() backClick = new EventEmitter();
   @ViewChild("videoPlayer", { static: false }) vidPlayer: ElementRef;
+  vlcLink: string;
 
-  constructor() {}
+  constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit() {}
 
   handleNextClick() {
+    this.videoInfo = null;
     this.nextClick.emit();
   }
 
   handleBackClick() {
+    this.videoInfo = null;
     this.backClick.emit();
   }
 
@@ -53,7 +57,6 @@ export class VideoPlayerComponent implements OnInit {
 
   @HostListener("window:keyup", ["$event"])
   keyEvent(event: KeyboardEvent) {
-    console.log(event);
     if (!this.vidPlayer) {
       return;
     }
@@ -70,5 +73,21 @@ export class VideoPlayerComponent implements OnInit {
 
   isPlayButtonKeyPress(event: KeyboardEvent) {
     return event && event.code === "MediaPlayPause";
+  }
+
+  getVlcLink():SafeUrl {
+    if (!this.videoInfo) { return ""; }
+
+    const vidUrl = window.location.origin + "/" +
+      this.videoInfo.src.replace(/ /g, "%20");
+
+    const vlcLink =
+      "vlc-x-callback://x-callback-url/download?url=" +
+      encodeURIComponent(vidUrl) +
+      "&filename=" +
+      encodeURIComponent(this.videoInfo.title) +
+      ".mp4";
+
+    return this.sanitizer.bypassSecurityTrustUrl(vlcLink);
   }
 }
