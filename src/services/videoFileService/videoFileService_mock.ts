@@ -1,6 +1,6 @@
 import { InMemoryDbService, ResponseOptions } from 'angular-in-memory-web-api';
 
-export class videoFileService_mock implements InMemoryDbService {
+export class VideoFileServiceMock implements InMemoryDbService {
   random = { id: 0, vidoefile: '/Tv Show/Season 1/Episode Title.mp4' };
   movies =
   {

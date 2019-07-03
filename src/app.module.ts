@@ -15,7 +15,7 @@ import { VideoListComponent } from './app/video-list/video-list.component';
 import { environment } from './environments/environment';
 
 import { VideoFileService } from 'src/services/videoFileService/videoFileService';
-import { videoFileService_mock } from './services/videoFileService/videoFileService_mock';
+import { VideoFileServiceMock } from './services/videoFileService/videoFileService_mock';
 
 @NgModule({
   declarations: [
@@ -29,11 +29,11 @@ import { videoFileService_mock } from './services/videoFileService/videoFileServ
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes, {useHash:true}),
+    RouterModule.forRoot(appRoutes, {useHash: true}),
 
-    //Mocks
+    // Mocks
     environment.production ? [] :
-      HttpClientInMemoryWebApiModule.forRoot(videoFileService_mock)
+      HttpClientInMemoryWebApiModule.forRoot(VideoFileServiceMock)
   ],
   providers: [VideoFileService],
   bootstrap: [AppComponent]

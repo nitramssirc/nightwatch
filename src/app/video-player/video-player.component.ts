@@ -75,7 +75,7 @@ export class VideoPlayerComponent implements OnInit {
     return event && event.code === "MediaPlayPause";
   }
 
-  getVlcLink():SafeUrl {
+  getVlcLink(): SafeUrl {
     if (!this.videoInfo) { return ""; }
 
     const vidUrl = window.location.origin + "/" +
